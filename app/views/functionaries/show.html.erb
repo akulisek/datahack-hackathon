@@ -1,14 +1,23 @@
-<h2><%=@functionary.full_name%></h2>
+<h2><%= @functionary.full_name %></h2>
+
+<div id="graphs">
+
+</div>
+
 <ul class="nav nav-tabs">
   <% @functionary.proclamations.each do |proclam| %>
-      <li role="presentation" class="active"><a data-toggle="tab" href="#proclamation-<%=proclam.year%>"><%= proclam.year%></a></li>
-      <div class="tab-content">
-        <% proclam.gains.each do |gain| %>
+      <li role="presentation" class="active">
+        <a data-toggle="tab" href="#proclamation_<%= proclam.year %>"><%= proclam.year %></a>
+      </li>
 
-            <h4>Príjmy verejného funkcionára za rok <%= proclam.year%></h4>
-            <div id="proclamation-<%=proclam.year%>" class="tab-pane fade in active">
-        <%end%>
-        </div>
-      </div>
-<%end%>
+  <% end %>
 </ul>
+
+<div class="tab-content">
+
+  <% @functionary.proclamations.each do |proclam| %>
+  <div id="proclamation_<%=proclam.year%>" class="tab-pane fade in active"></div>
+
+    <%= render 'proclamation', proclamation: proclam, functionary_id: @functionary.id %>
+    <%end%>
+</div>

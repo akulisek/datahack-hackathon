@@ -2,24 +2,23 @@
 
   <table id="functionaries_table" class="table table-bordered">
     <thead class="tableheader">
-        <tr>
-          <th class="hidden-xs">Name</th>
-          <th class="hidden-xs">Surname at birth</th>
-        </tr>
+    <tr>
+      <th class="hidden-xs">Name</th>
+      <th class="hidden-xs">Surname at birth</th>
+    </tr>
     </thead>
     <tbody>
-        <% functionaries.each do |functionary| %>
-            <tr class="row-one">
-              <td class="hidden-xs"><%= link_to(functionary.full_name, functionary_path(functionary)) %></td>
-              <td class="hidden-xs"><%= functionary.surname_at_birth %></td>
-            </tr>
-        <% end %>
+    <% functionaries.each do |functionary| %>
+        <tr class="row-one">
+          <td class="hidden-xs"><%= link_to(functionary.full_name, functionary_path(functionary)) %></td>
+          <td class="hidden-xs"><%= functionary.surname_at_birth %></td>
+        </tr>
+    <% end %>
     </tbody>
   </table>
 
   <div style="text-align: center;">
     <%= paginate @functionaries, param_name: :functionary_page, theme: 'bootstrap' %>
-    <!-- , param_name: :functionary_page, theme: 'bootstrap' -->
   </div>
 
 </div>

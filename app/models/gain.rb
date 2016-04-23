@@ -4,4 +4,8 @@ class Gain < ActiveRecord::Base
 
   belongs_to :proclamation
 
+  def convert_value_to_eur
+    currency.include?("€") ? value : value * 3.126
+  end
+
 end

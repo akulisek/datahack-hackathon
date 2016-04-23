@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422210756) do
+ActiveRecord::Schema.define(version: 20160423085854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,14 +84,14 @@ ActiveRecord::Schema.define(version: 20160422210756) do
   add_index "internal_numbers", ["value"], name: "index_internal_numbers_on_value", using: :btree
 
   create_table "jobs", force: :cascade do |t|
-    t.integer  "functionary_id"
+    t.integer  "proclamation_id"
     t.string   "description"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "jobs", ["description"], name: "index_jobs_on_description", using: :btree
-  add_index "jobs", ["functionary_id"], name: "index_jobs_on_functionary_id", using: :btree
+  add_index "jobs", ["proclamation_id"], name: "index_jobs_on_proclamation_id", using: :btree
 
   create_table "proclamations", force: :cascade do |t|
     t.integer  "functionary_id"

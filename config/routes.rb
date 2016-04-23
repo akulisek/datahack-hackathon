@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :proclamations
   end
 
+  get 'functionary/:id/gains_json' => 'functionaries#gains_json', as: :gains_json, :defaults => { :format => 'json' }
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

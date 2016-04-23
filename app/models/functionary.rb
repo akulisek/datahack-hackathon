@@ -30,6 +30,8 @@ class Functionary < ActiveRecord::Base
                        # we downcase everything.
                        return nil  if query.blank?
 
+                       query = I18n.transliterate(query)
+                       puts "\n\n\n\n\n"+query+"\n\n\n"
                        # condition query, parse into individual keywords
                        terms = query.to_s.downcase.split(/\s+/)
 
@@ -41,13 +43,15 @@ class Functionary < ActiveRecord::Base
                        # configure number of OR conditions for provision
                        # of interpolation arguments. Adjust this if you
                        # change the number of OR conditions.
+
+                       #POSTGRESQL DEPENDENCY: UNACCENT EXTENSION!!! (create extension unaccent;)
                        num_or_conds = 3
                        where(
                            terms.map {
                              or_clauses = [
-                                 "LOWER(functionaries.first_name) LIKE ?",
-                                 "LOWER(functionaries.last_name) LIKE ?",
-                                 "LOWER(functionaries.full_name) LIKE ?"
+                                 "LOWER(UNACCENT(functionaries.first_name)) LIKE ?",
+                                 "LOWER(UNACCENT(functionaries.last_name)) LIKE ?",
+                                 "LOWER(UNACCENT(functionaries.full_name)) LIKE ?"
                              ].join(' OR ')
                              "(#{ or_clauses })"
                            }.join(' AND '),
@@ -73,8 +77,8 @@ class Functionary < ActiveRecord::Base
 
   def self.options_for_sorted_by
     [
-        ['Name (a-z)', 'name_asc'],
-        ['Name (z-a)', 'name_desc']
+        ['Name (a-z)', 'full_name_asc'],
+        ['Name (z-a)', 'full_name_desc']
     ]
   end
 
