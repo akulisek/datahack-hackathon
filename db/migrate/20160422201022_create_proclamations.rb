@@ -1,7 +1,7 @@
 class CreateProclamations < ActiveRecord::Migration
   def change
     create_table :proclamations do |t|
-      t.belongs_to :functionary, index: true
+      t.belongs_to :functionaries, index: true
       t.string :global_id, index: true
       t.string :year, index: true
       t.string :adhibited_at, index: true

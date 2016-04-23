@@ -16,8 +16,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<%= yield %>
-
+<header>
+  <%= render 'layouts/navigation' %>
+</header>
+    <main role="main">
+      <div class="container" style="padding-top:50px;">
+        <%= yield %>
+      </div>
+    </main>
 </body>
 </html>

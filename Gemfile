@@ -27,7 +27,7 @@ gem 'filterrific'
 
 gem 'nokogiri'
 
-gem 'will_paginate'
+gem 'kaminari'
 
 gem 'bootstrap-sass'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422202706) do
+ActiveRecord::Schema.define(version: 20160422210756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,16 +61,16 @@ ActiveRecord::Schema.define(version: 20160422202706) do
 
   create_table "gains", force: :cascade do |t|
     t.integer  "proclamation_id"
-    t.integer  "type"
+    t.integer  "category"
     t.integer  "value"
     t.string   "currency"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "gains", ["category"], name: "index_gains_on_category", using: :btree
   add_index "gains", ["currency"], name: "index_gains_on_currency", using: :btree
   add_index "gains", ["proclamation_id"], name: "index_gains_on_proclamation_id", using: :btree
-  add_index "gains", ["type"], name: "index_gains_on_type", using: :btree
   add_index "gains", ["value"], name: "index_gains_on_value", using: :btree
 
   create_table "internal_numbers", force: :cascade do |t|
@@ -117,16 +117,16 @@ ActiveRecord::Schema.define(version: 20160422202706) do
 
   create_table "reimbursements", force: :cascade do |t|
     t.integer  "proclamation_id"
-    t.integer  "type"
+    t.integer  "category"
     t.integer  "value"
     t.string   "currency"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "reimbursements", ["category"], name: "index_reimbursements_on_category", using: :btree
   add_index "reimbursements", ["currency"], name: "index_reimbursements_on_currency", using: :btree
   add_index "reimbursements", ["proclamation_id"], name: "index_reimbursements_on_proclamation_id", using: :btree
-  add_index "reimbursements", ["type"], name: "index_reimbursements_on_type", using: :btree
   add_index "reimbursements", ["value"], name: "index_reimbursements_on_value", using: :btree
 
 end

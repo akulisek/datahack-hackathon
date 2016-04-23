@@ -1,0 +1,14 @@
+<h2><%=@functionary.full_name%></h2>
+<ul class="nav nav-tabs">
+  <% @functionary.proclamations.each do |proclam| %>
+      <li role="presentation" class="active"><a data-toggle="tab" href="#proclamation-<%=proclam.year%>"><%= proclam.year%></a></li>
+      <div class="tab-content">
+        <% proclam.gains.each do |gain| %>
+
+            <h4>Príjmy verejného funkcionára za rok <%= proclam.year%></h4>
+            <div id="proclamation-<%=proclam.year%>" class="tab-pane fade in active">
+        <%end%>
+        </div>
+      </div>
+<%end%>
+</ul>
