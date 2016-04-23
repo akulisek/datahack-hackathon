@@ -7,9 +7,9 @@
 </div>
 
 <ul class="nav nav-tabs">
-  <% @functionary.proclamations.each do |proclam| %>
-      <li role="presentation" class="active">
-        <a data-toggle="tab" href="#proclamation_<%= proclam.year %>"><%= proclam.year %></a>
+  <% @functionary.proclamations.each_with_index do |proclam, i| %>
+      <li class="<%= i ==0 ? "active" : "" %>">
+        <a data-toggle="tab" href="#proclamation-<%= proclam.year %>"><%= proclam.year %></a>
       </li>
 
   <% end %>
@@ -17,12 +17,13 @@
 
 <div class="tab-content">
 
-  <% @functionary.proclamations.each do |proclam| %>
-  <div id="proclamation_<%=proclam.year%>" class="tab-pane fade in active"></div>
-
-    <%= render 'proclamation', proclamation: proclam %>
+  <% @functionary.proclamations.each_with_index do |proclam, i| %>
+      <div id="proclamation-<%=proclam.year%>" class="tab-pane fade <%= i==0 ? "in active" : ""%>">
+        <%= render 'proclamation', proclamation: proclam %>
+      </div>
     <%end%>
 </div>
+
 
 <script>
     barchart("<%= @functionary.id.to_s %>");

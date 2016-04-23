@@ -1,170 +1,200 @@
 <section id="content">
-  <div class="row">
-    <h3>Vykonávané funkcie</h3>
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th>Popis</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% proclamation.jobs.each do |job| %>
-          <tr>
-            <td><%= job.description %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
 
-  <div class="row">
-    <h3>Príjmy</h3>
-
-    <div class="col-md-4">
-      <table class="table table-hover">
-        <caption>Príjmy z výkonu verejnej funkcie</caption>
-        <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Mena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
-            <tr>
-              <td><%= gain.value > 0 ? gain.convert_value_to_eur : '-' %></td>
-              <td>€</td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="" data-parent="#accordion" href="#<%= proclamation.id %>-collapseOne">Vykonávané
+          funkcie</a> <!--collapse-->
+      </h4>
     </div>
-
-    <div class="col-md-4">
-      <table class="table table-hover">
-        <caption>Iné príjmy</caption>
-        <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Mena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% proclamation.gains.select { |g| g.category == 'other' }.each do |gain| %>
-            <tr>
-              <td><%= gain.value > 0 ? gain.convert_value_to_eur : '-' %></td>
-              <td><%= gain.currency %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="col-md-4">
-      <table class="table table-hover">
-        <caption>Ostatné príjmy</caption>
-        <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Mena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
-            <tr>
-              <td><%= gain.value > 0 ? gain.convert_value_to_eur : '-' %></td>
-              <td><%= gain.currency %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+    <div id="<%= proclamation.id %>-collapseOne" class="panel-collapse "> <!--collapse-->
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Popis</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.jobs.each do |job| %>
+                  <tr>
+                    <td><%= job.description %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <h3>Náhrady</h3>
-
-    <div class="col-md-4">
-      <table class="table table-hover">
-        <caption>Paušálne náhrady</caption>
-        <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Mena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
-            <tr>
-              <td><%= gain.value > 0 ? gain.value : '-' %></td>
-              <td><%= gain.currency %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="" data-parent="#accordion" href="#<%= proclamation.id %>-collapseOne">Príjmy</a> <!--collapse-->
+      </h4>
     </div>
+    <div id="<%= proclamation.id %>-collapseOne" class="panel-collapse "> <!--collapse-->
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <table class="table table-hover">
+              <caption>Príjmy z výkonu verejnej funkcie</caption>
+              <thead>
+              <tr>
+                <th>Suma</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
+                  <tr>
+                    <td><%= gain.value > 0 ? gain.convert_value_to_eur.to_s+" €" : '-' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
 
-    <div class="col-md-4">
-      <table class="table table-hover">
-        <caption>Iné náhrady</caption>
-        <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Mena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
-            <tr>
-              <td><%= gain.value > 0 ? gain.value : '-' %></td>
-              <td><%= gain.currency %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+          <div class="col-md-4">
+            <table class="table table-hover">
+              <caption>Iné príjmy</caption>
+              <thead>
+              <tr>
+                <th>Suma</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.gains.select { |g| g.category == 'other' }.each do |gain| %>
+                  <tr>
+                    <td><%= gain.value > 0 ? gain.convert_value_to_eur.to_s+" €" : '-' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-md-4">
+            <table class="table table-hover">
+              <caption>Ostatné príjmy</caption>
+              <thead>
+              <tr>
+                <th>Suma</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
+                  <tr>
+                    <td><%= gain.value > 0 ? gain.convert_value_to_eur.to_s+" €" : '-' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="" data-parent="#accordion" href="#<%= proclamation.id %>-collapseTwo">Náhrady</a> <!--collapse-->
+      </h4>
+    </div>
+    <div id="<%= proclamation.id %>-collapseTwo" class="panel-collapse "> <!--collapse-->
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <table class="table table-hover">
+              <caption>Paušálne náhrady</caption>
+              <thead>
+              <tr>
+                <th>Suma</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.reimbursements.select { |r| r.category == 'administrative' }.each do |reimbursement| %>
+                  <tr>
+                    <td><%= reimbursement.value > 0 ? reimbursement.value.to_s+" €" : '-' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-md-4">
+            <table class="table table-hover">
+              <caption>Iné náhrady</caption>
+              <thead>
+              <tr>
+                <th>Suma</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.reimbursements.select { |r| r.category == 'other' }.each do |reimbursement| %>
+                  <tr>
+                    <td><%= reimbursement.value > 0 ? reimbursement.value.to_s+" €" : '-' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <h3>Majetok</h3>
-
-    <div class="col-md-4">
-      <table class="table table-hover">
-        <caption>Hnuteľný majetok</caption>
-        <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Mena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
-            <tr>
-              <td><%= gain.value > 0 ? gain.value : '-' %></td>
-              <td><%= gain.currency %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="" data-parent="#accordion" href="#<%= proclamation.id %>-collapseThree">Majetok</a> <!--collapse-->
+      </h4>
     </div>
-    <div class="col-md-4">
-      <table class="table table-hover">
-        <caption>Nehnuteľný majetok</caption>
-        <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Mena</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
-            <tr>
-              <td><%= gain.value > 0 ? gain.value : '-' %></td>
-              <td><%= gain.currency %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+    <div id="<%= proclamation.id %>-collapseThree" class="panel-collapse "> <!--collapse-->
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="col-md-4">
+            <table class="table table-hover">
+              <caption>Hnuteľný majetok</caption>
+              <thead>
+              <tr>
+                <th>Suma</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
+                  <tr>
+                    <td><%= gain.value > 0 ? gain.convert_value_to_eur.to_s+" €" : '-' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-4">
+            <table class="table table-hover">
+              <caption>Nehnuteľný majetok</caption>
+              <thead>
+              <tr>
+                <th>Suma</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% proclamation.gains.select { |g| g.category == 'administrative' }.each do |gain| %>
+                  <tr>
+                    <td><%= gain.value > 0 ? gain.convert_value_to_eur.to_s+" €" : '-' %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+
 </section>
