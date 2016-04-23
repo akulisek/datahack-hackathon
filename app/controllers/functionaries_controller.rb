@@ -18,16 +18,19 @@ class FunctionariesController < ApplicationController
 
   def show
     @functionary = Functionary.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def gains_json
     json = { "gains" => []}
     @functionary = Functionary.find(params[:id])
-    previous = 0
     @functionary.gains.includes(:proclamation).each do |gain|
       value = gain.convert_value_to_eur
-      json["gains"].push({"value" => value + previous, "year" => gain.proclamation.year})
-      previous = value
+      json["gains"].push({"value" => value, "year" => gain.proclamation.year})
     end
 
     respond_to do |format|

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   end
 
   get 'functionary/:id/gains_json' => 'functionaries#gains_json', as: :gains_json, :defaults => { :format => 'json' }
+  get 'functionary/:id/gains_per_year_json' => 'functionaries#gains_per_year_json', as: :gains_per_year_json, :defaults => { :format => 'json' }
+  get 'functionary/:id/total_gains_json' => 'functionaries#total_gains_json', as: :total_gains_json, :defaults => { :format => 'json' }
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

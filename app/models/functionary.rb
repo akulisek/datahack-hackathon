@@ -30,8 +30,6 @@ class Functionary < ActiveRecord::Base
                        # we downcase everything.
                        return nil  if query.blank?
 
-                       query = I18n.transliterate(query)
-                       puts "\n\n\n\n\n"+query+"\n\n\n"
                        # condition query, parse into individual keywords
                        terms = query.to_s.downcase.split(/\s+/)
 

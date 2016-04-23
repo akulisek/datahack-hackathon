@@ -1,4 +1,6 @@
+
 <h2><%= @functionary.full_name %></h2>
+
 
 <div id="graphs">
 
@@ -18,6 +20,10 @@
   <% @functionary.proclamations.each do |proclam| %>
   <div id="proclamation_<%=proclam.year%>" class="tab-pane fade in active"></div>
 
-    <%= render 'proclamation', proclamation: proclam, functionary_id: @functionary.id %>
+    <%= render 'proclamation', proclamation: proclam %>
     <%end%>
 </div>
+
+<script>
+    barchart("<%= @functionary.id.to_s %>");
+</script>
