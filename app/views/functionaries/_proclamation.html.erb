@@ -118,7 +118,7 @@
               <tbody>
               <% proclamation.reimbursements.select { |r| r.category == 'administrative' }.each do |reimbursement| %>
                   <tr>
-                    <td><%= reimbursement.value > 0 ? reimbursement.value.to_s+" €" : '-' %></td>
+                    <td><%= reimbursement.value > 0 ? reimbursement.value.to_s+" €" : '-' if reimbursement.value %></td>
                   </tr>
               <% end %>
               </tbody>
@@ -136,7 +136,7 @@
               <tbody>
               <% proclamation.reimbursements.select { |r| r.category == 'other' }.each do |reimbursement| %>
                   <tr>
-                    <td><%= reimbursement.value > 0 ? reimbursement.value.to_s+" €" : '-' %></td>
+                    <td><%= reimbursement.value > 0 ? reimbursement.value.to_s+" €" : '-' if reimbursement.value %></td>
                   </tr>
               <% end %>
               </tbody>

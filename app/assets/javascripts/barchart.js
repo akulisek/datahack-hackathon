@@ -1,5 +1,5 @@
 function barchart(functionary_id) {
-    var margin = {top: 20, right: 20, bottom: 70, left: 40},
+    var margin = {top: 20, right: 20, bottom: 70, left: 70},
         width = 600 - margin.left - margin.right,
         height = 300 - margin.top - margin.bottom;
 
@@ -18,7 +18,7 @@ function barchart(functionary_id) {
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient("left")
-        .ticks(10);
+        .ticks(5);
 
     var svg = d3.select("body").select("#graphs").append("svg")
         .attr("width", width + margin.left + margin.right)
